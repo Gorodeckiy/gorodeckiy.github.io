@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Taissa</title>
+  </head>
+  <body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const config = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }
+
+    let uri = window.location.href.split('?');
+    if (uri.length == 2)
+    {
+      let vars = uri[1].split('&');
+      let getVars = {};
+      let tmp = '';
+      vars.forEach(function(v){
+        tmp = v.split('=');
+        if(tmp.length == 2)
+          getVars[tmp[0]] = tmp[1];
+      });
+      console.log(getVars);
+      axios.post('https://www.bungie.net/Platform/App/OAuth/token/', {
+        grant_type: 'authorization_code',
+        code: getVars.code,
+        client_id: '29630'
+      }, config).then(result => {
+        console.log(result);
+      }).catch(error => {
+        console.log(error);
+      });
+      // do
+    }
+  </script>
+  </body>
+</html>
