@@ -24,10 +24,10 @@
           getVars[tmp[0]] = tmp[1];
       });
       console.log(getVars);
-      axios.post('https://www.bungie.net/Platform/App/OAuth/token/', {
+      axios.post('https://www.bungie.net/Platform/App/OAuth/Token/', {
+        client_id: '29630',
         grant_type: 'authorization_code',
-        code: getVars.code,
-        client_id: '29630'
+        code: getVars.code
       }, config).then(result => {
         console.log(result);
       }).catch(error => {
